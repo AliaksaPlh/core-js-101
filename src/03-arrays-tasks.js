@@ -91,7 +91,7 @@ function getArrayOfPositives(arr) {
       return arr.slice(mid);
     }
   }
-}
+} /* код не всегда правильно срабатывает */
 
 /**
  * Returns the array with strings only in the specified array (in original order)
@@ -104,7 +104,14 @@ function getArrayOfPositives(arr) {
  *    [ 1, 2, 3, 4, 5 ] => []
  *    [ 'cat, 'dog', 'raccoon' ] => [ 'cat', 'dog', 'raccoon' ]
  */
-function getArrayOfStrings(/* arr */) {
+function getArrayOfStrings(arr) {
+  let arrOfString = [];
+  for (let item of arr) {
+    if (typeof item === 'string') {
+      arrOfString.push(item);
+    }
+  }
+return arrOfString;
 }
 
 /**
@@ -120,7 +127,15 @@ function getArrayOfStrings(/* arr */) {
  *    [ 1, 2, 3, 4, 5, 'false' ]         => [ 1, 2, 3, 4, 5, 'false' ]
  *    [ false, 0, NaN, '', undefined ]   => [ ]
  */
-function removeFalsyValues(/* arr */) {
+function removeFalsyValues(arr) {
+  let arrOfString = []
+  for (let item of arr){
+    if (typeof item === 'string' || typeof item === 'number') {
+      if (item != '' && item != 0) {
+        arrOfString.push(item)
+      }
+    }
+    return arrOfString;
 }
 
 /**
@@ -135,6 +150,11 @@ function removeFalsyValues(/* arr */) {
  *    [ 'a', 'b', 'c', 'd', 'e', 'f', 'g' ]  => [ 'A', 'B', 'C', 'D', 'E', 'F', 'G' ]
  */
 function getUpperCaseStrings(/* arr */) {
+  const l = arr.length
+  for (let i = 0; i <+ l; i++){
+    arr.push(arr[i].toUpperCase())
+  }
+  return arr.slice(l);
 }
 
 
@@ -148,7 +168,12 @@ function getUpperCaseStrings(/* arr */) {
  *    [ '', 'a', 'bc', 'def', 'ghij' ]  => [ 0, 1, 2, 3, 4 ]
  *    [ 'angular', 'react', 'ember' ] => [ 7, 5, 5 ]
  */
-function getStringsLength(/* arr */) {
+function getStringsLength(arr) {
+  let arrOfLength = []
+  for (let item of arr) {
+    arrOfLength.push(item.length)
+  }
+  return arrOfLength
 }
 
 /**
@@ -162,8 +187,14 @@ function getStringsLength(/* arr */) {
  *    [ 1, 3, 4, 5 ], 2, 1  => [ 1, 2, 3, 4, 5 ]
  *    [ 1, 'b', 'c'], 'x', 0  => [ 'x', 1, 'b', 'c' ]
  */
-function insertItem(/* arr, item, index */) {
+function insertItem(arr, item, index) {
+  let newArr = [];
+  newArr = newArr.concat(arr);
+  newArr.splice(0, index);
+  newArr.unshift(item);
+  return arr.splice(0, index).concat(newArr);
 }
+
 
 /**
  * Returns the n first items of the specified array
@@ -175,7 +206,8 @@ function insertItem(/* arr, item, index */) {
  *    [ 1, 3, 4, 5 ], 2 => [ 1, 3 ]
  *    [ 'a', 'b', 'c', 'd'], 3  => [ 'a', 'b', 'c' ]
  */
-function getHead(/* arr, n */) {
+function getHead(arr, n) {
+  return arr.splice(0, n);
 }
 
 
@@ -189,7 +221,9 @@ function getHead(/* arr, n */) {
  *    [ 1, 3, 4, 5 ], 2  => [ 4, 5 ]
  *    [ 'a', 'b', 'c', 'd'], 3  => [ 'b', 'c', 'd' ]
  */
-function getTail(/* arr, n */) {
+function getTail(arr, n) {
+  arr.splice(0, arr.length - n);
+  return arr;
 }
 
 
